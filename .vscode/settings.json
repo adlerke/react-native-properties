@@ -1,0 +1,13 @@
+{
+    "sqltools.connections": [
+        {
+            "askForPassword": false,
+            "database": "alukey",
+            "dialect": "MySQL",
+            "name": "Alukey",
+            "port": 3306,
+            "server": "localhost",
+            "username": "root"
+        }
+    ]
+}
