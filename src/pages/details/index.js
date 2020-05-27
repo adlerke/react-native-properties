@@ -11,19 +11,19 @@ import {
   Linking,
   ScrollView,
 } from "react-native";
-import api from '../../api'
+import api from '../../services/api'
 import Moment from "moment";
 import MapView, { Marker, UrlTile, PROVIDER_GOOGLE } from "react-native-maps";
 import { Card, Button, Divider, Appbar } from "react-native-paper";
 import styles from "./style";
-import logoImg from "../../../assets/favicon.png";
+import logoImg from "../../../assets/ok.png";
 import axios from "axios";
 import CustomBtn from '../../components/CustomBtn'
 
 export default function Details() {
   const navigation = useNavigation();
   const route = useRoute();
-  const [pics, setPics] = useState([]);
+  const [pics, setPics] = useState({});
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
   const property = route.params.property;
@@ -33,16 +33,20 @@ export default function Details() {
   }
   async function getLatLong() {
     const response = await axios.get(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${property.address.street} ${property.address.district} ${property.address.cep}&key=AIzaSyD575m6WGap6lAXU4IUL4Of0LUOsZ7SOks`
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${property.address.street} ${property.address.district} ${property.address.cep}&key=`
     );
     setLat(response.data.results[0].geometry.location.lat);
     setLng(response.data.results[0].geometry.location.lng);
   }
+
   useEffect(() => {
-    getLatLong();
-    if (property.pictures) {
+    // getLatLong();
+    if (property.pictures !== []) {
       setPics(property.pictures);
+      console.log(pics===null?'oi' : 'nao')
+
     } else {
+      console.log('aqui parou2')
       setPics({
         id: 1,
         picture:
@@ -141,8 +145,8 @@ export default function Details() {
                 provider={PROVIDER_GOOGLE}
                 style={styles.mapStyle}
                 region={{
-                  latitude: lat,
-                  longitude: lng,
+                  latitude: -10.945308,
+                  longitude: -37.0772017,
                   latitudeDelta: 0.0922,
                   longitudeDelta: 0.0421,
                 }}
@@ -152,10 +156,10 @@ export default function Details() {
                 <Marker
                   onPress={() =>
                     Linking.openURL(
-                      `https://www.google.com.br/maps?q=${lat},${lng}`
+                      `https://www.google.com.br/maps?q=-10.945308,-37.0772017`
                     )
                   }
-                  coordinate={{ latitude: lat, longitude: lng }}
+                  coordinate={{ latitude: -10.945308, longitude: -37.0772017 }}
                 />
               </MapView>
             </Card>

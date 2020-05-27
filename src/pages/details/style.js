@@ -28,9 +28,9 @@ export default StyleSheet.create({
     width: deviceWidth,
   },
   logoAl: {
-    marginRight: 8,
-    width: 40,
-    height: 40,
+    marginTop: "2%",
+    width: 50,
+    height: 50,
   },
   pics: {
     justifyContent: "center",

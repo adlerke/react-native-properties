@@ -11,31 +11,18 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
-  Animated,
   ImageBackground,
 } from "react-native";
-import api from "../../api";
+import api from "../../services/api";
 import { Appbar, Card, Title, Paragraph, Divider } from "react-native-paper";
-import logoImg from "../../../assets/favicon.png";
+import logoImg from "../../../assets/ok.png";
 import styles from "./styles";
 
 export default function PropertyList() {
   const navigation = useNavigation();
   const [tags, setTags] = useState([]);
   const [properties, setProperties] = useState([]);
-  const animateIn = useRef(new Animated.Value(1)).current;
-  const animatePressIn = () => {
-    Animated.timing(animateIn, {
-      toValue: 1,
-      duration: 200,
-    }).start();
-  };
-  const animatePressOut = () => {
-    Animated.timing(animateIn, {
-      toValue: 0.5,
-      duration: 200,
-    }).start();
-  };
+
   function navigateToDetail(property) {
     navigation.navigate("Details", { property });
   }
@@ -54,14 +41,13 @@ export default function PropertyList() {
   }, []);
   return (
     <>
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <Appbar style={styles.header}>
-          <Text style={styles.appTitle}>Alukey</Text>
           <Image style={styles.logo} source={logoImg} />
         </Appbar>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Text style={styles.titleText}>
-            Buscar por Categorias{" "}
+            Categorias{" "}
             <Ionicons name="ios-arrow-forward" size={15} color="black" />
           </Text>
           <FlatList
@@ -97,34 +83,22 @@ export default function PropertyList() {
               if (property.picture === "") {
                 Pic =
                   "https://image.shutterstock.com/image-vector/no-pictures-allowed-vector-icon-260nw-601163585.jpg";
+              }else{
+                Pic = property.picture
               }
               return (
                 
-                <Animated.View
-                  style={[
-                   styles.property,
-
-                    {
-                      transform: [
-                        {
-                          scale: animateIn.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [0.98, 1],
-                          }),
-                        },
-                      ],
-                    },
-                  ]}
+                <View
+                  style={
+                   styles.property}
                 >
                 <Card
                   onPress={() => navigateToDetail(property)}
-                  onTouchStart={animatePressOut}
-                  onTouchEnd={animatePressIn}
                   style={styles.bxs}
                 >
                   <Card.Cover
                     source={{
-                      uri: `${property.picture}`,
+                      uri: `${Pic}`,
                     }}
                     resizeMode="contain"
                   />
@@ -169,13 +143,13 @@ export default function PropertyList() {
                     </Paragraph>
                   </Card.Content>
                 </Card>
-                </Animated.View>
+                </View>
                
               );
             }}
           />
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </>
   );
 }

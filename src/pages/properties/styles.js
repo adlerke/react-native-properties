@@ -15,7 +15,7 @@ export default StyleSheet.create({
     backgroundColor: "#48397B",
     height: "8%",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
   },
   appTitle: {
     marginLeft: 11,
@@ -24,9 +24,9 @@ export default StyleSheet.create({
     color: "#fff",
   },
   logo: {
-    marginRight: 8,
-    width: 40,
-    height: 40,
+    marginTop: '2%',
+    width: 70,
+    height: 70,
   },
   cardPropertyList: {
     paddingHorizontal: 15,
@@ -64,7 +64,7 @@ export default StyleSheet.create({
     fontWeight: "bold",
   },
   bxs: {
-    shadowColor: "#222",
+    shadowColor: "#444",
     shadowOffset: {
       width: 0,
       height: 6,
