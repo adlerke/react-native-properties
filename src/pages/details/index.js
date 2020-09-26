@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import api from '../../services/api'
 import Moment from "moment";
-import MapView, { Marker, UrlTile, PROVIDER_GOOGLE } from "react-native-maps";
+// import MapView, { Marker, UrlTile, PROVIDER_GOOGLE } from "react-native-maps";
 import { Card, Button, Divider, Appbar } from "react-native-paper";
 import styles from "./style";
 import logoImg from "../../../assets/ok.png";
@@ -138,7 +138,7 @@ export default function Details() {
                 </Text>
               </Card.Content>
             </View>
-            <Card style={styles.property}>
+            {/* <Card style={styles.property}>
               <Card.Title title="Localização" />
               <Divider />
               <MapView
@@ -162,7 +162,7 @@ export default function Details() {
                   coordinate={{ latitude: -10.945308, longitude: -37.0772017 }}
                 />
               </MapView>
-            </Card>
+            </Card> */}
             <Card style={styles.property}>
               <Card.Title title="Características" />
               <Divider />

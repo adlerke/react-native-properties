@@ -80,6 +80,7 @@ export default function PropertyList() {
             showsVerticalScrollIndicator={false}
             style={styles.cardPropertyList}
             renderItem={({ item: property }) => {
+              let Pic = "";
               if (property.picture === "") {
                 Pic =
                   "https://image.shutterstock.com/image-vector/no-pictures-allowed-vector-icon-260nw-601163585.jpg";
